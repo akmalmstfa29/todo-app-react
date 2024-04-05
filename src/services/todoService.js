@@ -5,10 +5,20 @@ const API_URL = 'https://jsonplaceholder.typicode.com/todos';
 const getAllTodos = async () => {
   try {
     const response = await axios.get(API_URL);
-    return response.data.map(todo => ({...todo, text: todo.title}));
+    return response.data;
   } catch (error) {
     console.error('Error fetching todos:', error);
     return [];
+  }
+};
+
+const createTodo = async title => {
+  try {
+    const response = await axios.post(API_URL, { title, completed: false });
+    return response.data;
+  } catch (error) {
+    console.error('Error creating todo:', error);
+    return null;
   }
 };
 
@@ -22,4 +32,4 @@ const deleteTodo = async id => {
   }
 };
 
-export { getAllTodos, deleteTodo };
+export { getAllTodos, createTodo, deleteTodo };

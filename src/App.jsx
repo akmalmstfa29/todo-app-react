@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
-import { deleteTodo, getAllTodos } from './services/todoService';
+import { createTodo, deleteTodo, getAllTodos } from './services/todoService';
+import AddTodo from './components/AddTodo';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -16,6 +17,14 @@ function App() {
     fetchTodos();
   }, []);
 
+  const addTodo = async title => {
+    const newTodo = await createTodo(title);
+    if (newTodo) {
+      setTodos([newTodo, ...todos]);
+      setFilteredTodos([ newTodo,...todos]);
+    }
+  };
+
   const deleteOneTodo = async id => {
     const isDeleted = await deleteTodo(id);
     if (isDeleted) {
@@ -28,6 +37,7 @@ function App() {
   return (
     <div className="App">
       <h1>Todo App</h1>
+      <AddTodo addTodo={addTodo} />
       <TodoList
         todos={filteredTodos}
         toggleTodo={() => {}}

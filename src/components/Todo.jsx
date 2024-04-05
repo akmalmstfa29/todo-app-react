@@ -22,7 +22,7 @@ const Todo = ({ todo, toggleTodo, deleteTodo }) => {
         >
           {todo.completed ? <RiCheckboxCircleFill /> : <RiCheckboxBlankCircleLine />}
         </div>
-        <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>{todo.text}</span>
+        <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>{todo.title}</span>
         <button onClick={() => deleteTodo(todo.id)}>Delete</button>
       </div>
     </motion.div>
@@ -32,7 +32,7 @@ const Todo = ({ todo, toggleTodo, deleteTodo }) => {
 Todo.propTypes = {
   todo: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired
   }).isRequired,
   toggleTodo: PropTypes.func.isRequired,

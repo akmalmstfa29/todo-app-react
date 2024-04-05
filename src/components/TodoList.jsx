@@ -15,7 +15,7 @@ TodoList.propTypes = {
   todos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
       completed: PropTypes.bool.isRequired
     })
   ).isRequired,
