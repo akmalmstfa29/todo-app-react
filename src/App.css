@@ -1,5 +1,5 @@
 .App {
-  max-width: 400px;
+  width: 100% !important;
   margin: 0 auto;
   padding: 20px;
 }
@@ -7,7 +7,6 @@
 .todo {
   display: flex;
   align-items: center;
-  justify-content: center;
   margin-bottom: 10px;
 }
 

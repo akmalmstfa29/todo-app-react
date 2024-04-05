@@ -2,7 +2,12 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleFill } from 'react-icons/ri';
 
-const Todo = ({ todo, toggleTodo, deleteTodo }) => {
+const Todo = ({ todo, toggleTodo, deleteTodo, setEditingTodo }) => {
+  const handleEdit = () => {
+    console.log(todo);
+    setEditingTodo(todo);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -100 }}
@@ -22,8 +27,22 @@ const Todo = ({ todo, toggleTodo, deleteTodo }) => {
         >
           {todo.completed ? <RiCheckboxCircleFill /> : <RiCheckboxBlankCircleLine />}
         </div>
-        <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>{todo.title}</span>
-        <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+        <span
+          style={{
+            textDecoration: todo.completed ? 'line-through' : 'none',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            display: 'inline',
+          }}
+        >
+          {todo.title}
+        </span>
+        <div style={{flexGrow: 1}} />
+        <div>
+          <button onClick={handleEdit}>Edit</button>
+          <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+        </div>
       </div>
     </motion.div>
   );
@@ -36,6 +55,7 @@ Todo.propTypes = {
     completed: PropTypes.bool.isRequired
   }).isRequired,
   toggleTodo: PropTypes.func.isRequired,
+  setEditingTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired
 };
 

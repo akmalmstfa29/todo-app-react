@@ -22,6 +22,16 @@ const createTodo = async title => {
   }
 };
 
+const updateTodo = async (id, updates) => {
+  try {
+    const response = await axios.patch(`${API_URL}/${id}`, updates);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating todo:', error);
+    return null;
+  }
+};
+
 const deleteTodo = async id => {
   try {
     const response = await axios.delete(`${API_URL}/${id}`);
@@ -32,4 +42,4 @@ const deleteTodo = async id => {
   }
 };
 
-export { getAllTodos, createTodo, deleteTodo };
+export { getAllTodos, createTodo, updateTodo, deleteTodo };

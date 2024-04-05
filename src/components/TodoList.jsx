@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import Todo from './Todo';
 
-const TodoList = ({ todos, toggleTodo, deleteTodo }) => {
+const TodoList = ({ todos, toggleTodo, deleteTodo, setEditingTodo }) => {
   return (
-    <div className="todo-list">
+    <div className="todo-list" style={{ flexBasis: '50%' }}>
       {todos.map(todo => (
-        <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+        <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo} setEditingTodo={setEditingTodo} />
       ))}
     </div>
   );
@@ -20,6 +20,7 @@ TodoList.propTypes = {
     })
   ).isRequired,
   toggleTodo: PropTypes.func.isRequired,
+  setEditingTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired
 };
 

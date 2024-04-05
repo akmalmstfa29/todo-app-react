@@ -7,7 +7,6 @@ const AddTodo = ({ addTodo }) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (!title.trim()) return;
-    console.log(title);
     addTodo(title);
     setTitle('');
   };
