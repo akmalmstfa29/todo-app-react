@@ -1,18 +1,29 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
-import { getAllTodos } from './services/todoService';
+import { deleteTodo, getAllTodos } from './services/todoService';
 
 function App() {
+  const [todos, setTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
 
   useEffect(() => {
     const fetchTodos = async () => {
       const allTodos = await getAllTodos();
+      setTodos(allTodos);
       setFilteredTodos(allTodos);
     };
     fetchTodos();
   }, []);
+
+  const deleteOneTodo = async id => {
+    const isDeleted = await deleteTodo(id);
+    if (isDeleted) {
+      const updatedTodos = todos.filter(todo => todo.id !== id);
+      setTodos(updatedTodos);
+      setFilteredTodos(updatedTodos);
+    }
+  };
 
   return (
     <div className="App">
@@ -20,7 +31,7 @@ function App() {
       <TodoList
         todos={filteredTodos}
         toggleTodo={() => {}}
-        deleteTodo={() => {}}
+        deleteTodo={deleteOneTodo}
       />
     </div>
   );

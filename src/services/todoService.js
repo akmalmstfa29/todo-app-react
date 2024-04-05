@@ -12,4 +12,14 @@ const getAllTodos = async () => {
   }
 };
 
-export { getAllTodos };
+const deleteTodo = async id => {
+  try {
+    const response = await axios.delete(`${API_URL}/${id}`);
+    return response.status === 200;
+  } catch (error) {
+    console.error('Error deleting todo:', error);
+    return false;
+  }
+};
+
+export { getAllTodos, deleteTodo };
