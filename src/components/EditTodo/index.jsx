@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 
 const EditTodo = ({ todo, updateTodo, setEditingTodo }) => {
   const [data, setData] = useState(todo);
