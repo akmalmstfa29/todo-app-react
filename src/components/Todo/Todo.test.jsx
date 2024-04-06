@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { expect, test, vi } from 'vitest';
-import Todo from './Todo';
+import Todo from '.';
 
 test('renders todo correctly', () => {
   const todo = { id: 1, title: 'Example Todo', completed: false };

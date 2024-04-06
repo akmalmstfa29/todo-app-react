@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import TodoList from './components/TodoList';
-import { createTodo, deleteTodo, getAllTodos, updateTodo } from './services/todoService';
 import AddTodo from './components/AddTodo';
 import EditTodo from './components/EditTodo';
 import SearchBar from './components/SearchBar';
+import TodoList from './components/TodoList';
+import { createTodo, deleteTodo, getAllTodos, updateTodo } from './services/todoService';
 
 function App() {
   const [todos, setTodos] = useState([]);
