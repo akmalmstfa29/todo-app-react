@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleFill } from 'react-icons/ri';
@@ -17,6 +18,7 @@ const Todo = ({ todo, toggleTodo, deleteTodo, setEditingTodo }) => {
     >
       <div className="todo">
         <div
+          data-testid="toggle-todo"
           onClick={() => toggleTodo(todo.id)}
           style={{
             display: 'flex',
@@ -40,8 +42,8 @@ const Todo = ({ todo, toggleTodo, deleteTodo, setEditingTodo }) => {
         >
           {todo.title}
         </span>
-        <div style={{flexGrow: 1}} />
-        <div style={{display: 'flex', flexWrap: 'nowrap'}}>
+        <div style={{ flexGrow: 1 }} />
+        <div style={{ display: 'flex', flexWrap: 'nowrap', gap: 2 }}>
           <button onClick={handleEdit}>Edit</button>
           <button onClick={() => deleteTodo(todo.id)}>Delete</button>
         </div>
