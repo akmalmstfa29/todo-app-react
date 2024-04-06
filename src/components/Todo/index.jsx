@@ -5,7 +5,6 @@ import { RiCheckboxBlankCircleLine, RiCheckboxCircleFill } from 'react-icons/ri'
 
 const Todo = ({ todo, toggleTodo, deleteTodo, setEditingTodo }) => {
   const handleEdit = () => {
-    console.log(todo);
     setEditingTodo(todo);
   };
 
