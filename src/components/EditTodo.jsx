@@ -19,7 +19,7 @@ const EditTodo = ({ todo, updateTodo, setEditingTodo }) => {
 
   return (
     <form onSubmit={handleSubmit} style={{ flexBasis: '50%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 5, }}>
-      <textarea type="title" value={title} onChange={e => setTitle(e.target.value)} style={{  }} />
+      <textarea type="title" value={title} onChange={e => setTitle(e.target.value)} style={{ minWidth: 250, minHeight: 100 }} />
       <button type="submit">Update</button>
     </form>
   );

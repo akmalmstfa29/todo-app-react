@@ -4,6 +4,7 @@ import TodoList from './components/TodoList';
 import { createTodo, deleteTodo, getAllTodos, updateTodo } from './services/todoService';
 import AddTodo from './components/AddTodo';
 import EditTodo from './components/EditTodo';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -28,12 +29,12 @@ function App() {
   };
 
   const toggleTodo = async id => {
+    await updateTodo(id, { completed: !todos.find(todo => todo.id === id).completed });
     const updatedTodos = todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
     setTodos(updatedTodos);
     setFilteredTodos(updatedTodos);
-    await updateTodo(id, { completed: !todos.find(todo => todo.id === id).completed });
   };
 
   const deleteOneTodo = async id => {
@@ -54,17 +55,30 @@ function App() {
     await updateTodo(id, updates);
   };
 
+  const handleSearch = query => {
+    const filtered = todos.filter(todo =>
+      todo.title.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredTodos(filtered);
+  };
+
   return (
     <div className="App">
       <h1>Todo App</h1>
-      <AddTodo addTodo={addTodo} />
-      <div style={{ display: 'flex', width: '100%' }}>
-        <TodoList
-          todos={filteredTodos}
-          toggleTodo={toggleTodo}
-          deleteTodo={deleteOneTodo}
-          setEditingTodo={setEditingTodo}
-        />
+      <div style={{ display: 'flex', flexDirection: 'row'}}>
+        <div style={{ display: 'flex', flexDirection: 'column'}}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
+            <SearchBar handleSearch={handleSearch} />
+            <AddTodo addTodo={addTodo} />
+          </div>
+          <TodoList
+            todos={filteredTodos}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteOneTodo}
+            setEditingTodo={setEditingTodo}
+          />
+        </div>
+
         {editingTodo && (
           <EditTodo
             todo={editingTodo}

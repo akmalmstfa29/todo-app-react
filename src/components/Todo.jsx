@@ -34,12 +34,14 @@ const Todo = ({ todo, toggleTodo, deleteTodo, setEditingTodo }) => {
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             display: 'inline',
+            minWidth: 400,
+            maxWidth: 430,
           }}
         >
           {todo.title}
         </span>
         <div style={{flexGrow: 1}} />
-        <div>
+        <div style={{display: 'flex', flexWrap: 'nowrap'}}>
           <button onClick={handleEdit}>Edit</button>
           <button onClick={() => deleteTodo(todo.id)}>Delete</button>
         </div>
